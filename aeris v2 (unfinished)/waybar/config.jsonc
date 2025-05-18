@@ -1,0 +1,54 @@
+{
+    "layer": "top",
+    "position": "top",
+    "modules-left": [
+         "battery",
+        "custom/network" ,
+
+    ],
+    "modules-center": ["hyprland/workspaces"
+
+    ],
+    "modules-right": [
+
+        "pulseaudio",
+                "backlight",
+        "custom/temperature",
+
+
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "hyprctl dispatch workspace {name}"
+    },
+
+    "battery": {
+        "format": " {capacity}%",
+        "format-charging": " {capacity}% "
+    },
+
+    "custom/temperature": {
+        "exec": "cat /sys/class/thermal/thermal_zone0/temp | awk '{print \" \" $1/1000 \"°C\"}'",
+        "interval": 2,
+        "return-type": "plain-text"
+    },
+
+    "pulseaudio": {
+        "format": " {volume}%"
+    },
+
+    "backlight": {
+        "format": " {percent}%"
+    },
+
+    "custom/network": {
+        "exec": "nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d: -f2",
+        "format": "",        /* Wi-Fi icon when connected */
+        "format-connected": "",  /* Wi-Fi connected icon */
+        "format-disconnected": "",  /* Disconnected icon */
+        "interval": 10,
+        "return-type": "icon"
+    }
+}
+
